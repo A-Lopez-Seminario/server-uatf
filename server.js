@@ -37,20 +37,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
 });
-```
-
-### Paso 2.7: Variables de Entorno
-
-**Archivo: `server/.env`**
-```
-MONGODB_URI=mongodb://localhost:27017/uatf
-JWT_SECRET=tu_secreto_super_seguro_cambialo_en_produccion_12345
-PORT=5000
-NODE_ENV=development
-```
-
-**Archivo: `server/.gitignore`**
-```
-node_modules/
-.env
-*.log
