@@ -6,7 +6,16 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://client-uatf.vercel.app',
+    'https://client-uatf-l2dyenupp-alvin-neil-lopez-aguilars-projects.vercel.app',
+    'https://*.vercel.app' // Permite todos los dominios de Vercel
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Conectar a MongoDB
