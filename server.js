@@ -12,9 +12,10 @@ app.use(cors({
     'http://localhost:3000',
     'https://client-uatf.vercel.app',
     'https://client-uatf-l2dyenupp-alvin-neil-lopez-aguilars-projects.vercel.app',
-    'https://*.vercel.app' // Permite todos los dominios de Vercel
+    'https://*.vercel.app'
   ],
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 app.use(express.json());
 
