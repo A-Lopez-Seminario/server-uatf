@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
+// Middleware CORS - CORREGIDO
 app.use(cors({
   origin: [
     'http://localhost:4173',
@@ -13,11 +13,14 @@ app.use(cors({
     'http://localhost:3000',
     'https://client-uatf.vercel.app',
     'https://client-uatf-l2dyenupp-alvin-neil-lopez-aguilars-projects.vercel.app',
-    'https://*.vercel.app'
+    /https:\/\/.*\.vercel\.app$/  // ✅ Regex para todos los subdominios de Vercel
   ],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   optionsSuccessStatus: 200
 }));
+
 app.use(express.json());
 
 // Conectar a MongoDB
@@ -32,6 +35,14 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/uatf')
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/progreso', require('./routes/progreso'));
 app.use('/api/notificaciones', require('./routes/notificaciones'));
+
+// Ruta raíz
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'API del Sistema UATF',
+    status: 'online'
+  });
+});
 
 // Ruta de prueba
 app.get('/api/health', (req, res) => {
